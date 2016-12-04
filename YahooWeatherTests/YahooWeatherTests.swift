@@ -11,14 +11,28 @@ import XCTest
 
 class YahooWeatherTests: XCTestCase {
     
+    var vc: MainView!
+    
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        let storyb = UIStoryboard(name: "Main", bundle: Bundle.main)
+        vc = storyb.instantiateInitialViewController() as! MainView
     }
     
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
+    }
+    
+    func testCalculateCelsius() {
+        vc.isCelsius = true
+        let v = vc.converter(temp: 10)
+        XCTAssert(v == -12)
+    }
+    
+    func testCalculateFaringate() {
+        vc.isCelsius = false
+        let v = vc.converter(temp: 10)
+        XCTAssertTrue(v == 10)
     }
     
     func testExample() {

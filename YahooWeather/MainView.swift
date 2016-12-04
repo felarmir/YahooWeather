@@ -10,7 +10,7 @@ import UIKit
 import CoreLocation
 
 
-class MainView: UIViewController, CLLocationManagerDelegate, UITableViewDelegate, UITableViewDataSource {
+class MainView: UIViewController, CLLocationManagerDelegate, UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate {
 
     @IBOutlet weak var cityName: UILabel!
     @IBOutlet weak var currentTemp: UILabel!
@@ -18,6 +18,7 @@ class MainView: UIViewController, CLLocationManagerDelegate, UITableViewDelegate
     @IBOutlet weak var bgImage: UIImageView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var curWeatherPic: UIImageView!
+    @IBOutlet weak var currentView: UIView!
     
     let locationManager = CLLocationManager()
     var geocoder = CLGeocoder()
@@ -28,6 +29,10 @@ class MainView: UIViewController, CLLocationManagerDelegate, UITableViewDelegate
     var astro:[String: Any]?
     var wind:[String: Any]?
     var isCelsius: Bool?
+    var isCurrentHide: Bool?
+    var currentHeight: CGFloat!
+    var mouve: CGFloat!
+    let cellID = "WEATHERID"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,6 +50,10 @@ class MainView: UIViewController, CLLocationManagerDelegate, UITableViewDelegate
         locationManager.startUpdatingLocation()
         clearTempText()
         isCelsius = true
+        isCurrentHide = false
+        currentHeight = currentView.bounds.height
+        mouve = 0
+        tableView.register(WeatherDateCell.self, forCellReuseIdentifier: cellID)
     }
 
     func clearTempText() {
@@ -53,9 +62,6 @@ class MainView: UIViewController, CLLocationManagerDelegate, UITableViewDelegate
         self.weatherText.text = ""
     }
     
-   // override func preferredStatusBarStyle() -> UIStatusBarStyle {
-   //     return UIStatusBarStyle.lightContent
-   // }
     
     func loadWeatherData(city: String) {
         weatherDictionary = queryToYahoo(statement: "select * from weather.forecast where woeid in (select woeid from geo.places(1) where text=\"\(city)\")")
@@ -129,12 +135,12 @@ class MainView: UIViewController, CLLocationManagerDelegate, UITableViewDelegate
         var fcell = UITableViewCell()
         
         if indexPath.section == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "weather", for: indexPath) as! WeatherDateCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! WeatherDateCell
             let forcastItem = forecast![indexPath.row]
-            cell.weakDay?.text = forcastItem["day"] as? String
-            cell.high?.text = "\(converter(temp: Int((forcastItem["high"] as? String)!)!))"
-            cell.low?.text = "\(converter(temp: Int((forcastItem["low"] as? String)!)!))"
-            cell.weatherImage?.image = UIImage(named: "img/icons/\(forcastItem["code"] as! String).png")
+            cell.weakDay.text = forcastItem["day"] as? String
+            cell.high.text = "\(converter(temp: Int((forcastItem["high"] as? String)!)!))"
+            cell.low.text = "\(converter(temp: Int((forcastItem["low"] as? String)!)!))"
+            cell.weatherImage.image = UIImage(named: "img/icons/\(forcastItem["code"] as! String).png")
             fcell = cell;
         }
         if indexPath.section == 1 {
@@ -154,6 +160,18 @@ class MainView: UIViewController, CLLocationManagerDelegate, UITableViewDelegate
         }
         return CGFloat(rowHeigh)
     }
+   
+    @IBAction func swipeGesture(gesture: UIPanGestureRecognizer) {
+            let transition = gesture.translation(in: self.view)
+                if currentView.layer.position.y < tableView.layer.position.y {
+                    tableView.layer.position.y = transition.y
+                    currentView.alpha = (transition.y - currentView.layer.position.y) / currentHeight
+                }
+
+        
+    }
+    
+
     
     /*
     // MARK: - Navigation
