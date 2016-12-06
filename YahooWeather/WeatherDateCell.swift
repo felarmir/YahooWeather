@@ -19,12 +19,14 @@ class WeatherDateCell: UITableViewCell {
     var high: UILabel = {
         let high = UILabel()
         high.textColor = .white
+        high.textAlignment = .right
         high.translatesAutoresizingMaskIntoConstraints = false
         return high
     }()
     var low: UILabel = {
         let low = UILabel()
         low.textColor = .white
+        low.textAlignment = .right
         low.translatesAutoresizingMaskIntoConstraints = false
         return low
     }()
@@ -47,7 +49,7 @@ class WeatherDateCell: UITableViewCell {
         addSubview(low)
         addSubview(weatherImage)
         
-        let ch: CGFloat = self.bounds.height - 4
+        let ch: CGFloat = 30
         
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-5-[day(100)]-[img(\(ch))]-(>=20)-[high(35)]-10-[low(35)]-5-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["day": weakDay, "img":weatherImage, "high":high, "low":low]))
 

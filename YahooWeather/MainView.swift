@@ -33,6 +33,7 @@ class MainView: UIViewController, CLLocationManagerDelegate, UITableViewDelegate
     var currentHeight: CGFloat!
     var mouve: CGFloat!
     let cellID = "WEATHERID"
+    let descriptCellID = "weatherDeskription"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,7 +54,9 @@ class MainView: UIViewController, CLLocationManagerDelegate, UITableViewDelegate
         isCurrentHide = false
         currentHeight = currentView.bounds.height
         mouve = 0
+        
         tableView.register(WeatherDateCell.self, forCellReuseIdentifier: cellID)
+        tableView.register(WeatherDetailCell.self, forCellReuseIdentifier: descriptCellID)
     }
 
     func clearTempText() {
@@ -144,10 +147,10 @@ class MainView: UIViewController, CLLocationManagerDelegate, UITableViewDelegate
             fcell = cell;
         }
         if indexPath.section == 1 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "weatherDeskription", for: indexPath) as! WeatherDetailCell
-            cell.sunrise?.text = astro!["sunrise"] as? String
-            cell.sunset?.text = astro!["sunset"] as? String
-            cell.wind?.text = "\((wind!["speed"] as? String)!) m/s"
+            let cell = tableView.dequeueReusableCell(withIdentifier: descriptCellID, for: indexPath) as! WeatherDetailCell
+            cell.sunrise.text = astro!["sunrise"] as? String
+            cell.sunset.text = astro!["sunset"] as? String
+            cell.wind.text = "\((wind!["speed"] as? String)!) m/s"
             fcell = cell
         }
         return fcell
@@ -167,8 +170,6 @@ class MainView: UIViewController, CLLocationManagerDelegate, UITableViewDelegate
                     tableView.layer.position.y = transition.y
                     currentView.alpha = (transition.y - currentView.layer.position.y) / currentHeight
                 }
-
-        
     }
     
 
