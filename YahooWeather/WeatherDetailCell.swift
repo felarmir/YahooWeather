@@ -77,8 +77,8 @@ class WeatherDetailCell: UITableViewCell {
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-(\(position1))-[sst(100)]-5-[ss]-(>=20)-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["ss":sunset, "sst":sunsetTitle]))
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-(\(position1))-[wdt(100)]-5-[wd]-(>=20)-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["wd":wind, "wdt":windTitle]))
         
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-10-[sr]-5-[ss]-5-[wd]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["sr":sunrise, "ss":sunset, "wd":wind]))
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-10-[srt]-5-[sst]-5-[wdt]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["srt":sunriseTitle, "sst":sunsetTitle, "wdt":windTitle]))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-10-[sr][ss][wd]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["sr":sunrise, "ss":sunset, "wd":wind]))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-10-[srt][sst][wdt]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["srt":sunriseTitle, "sst":sunsetTitle, "wdt":windTitle]))
     }
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {

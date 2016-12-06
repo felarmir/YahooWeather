@@ -37,7 +37,7 @@ class MainView: UIViewController, CLLocationManagerDelegate, UITableViewDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        bgImage.image = UIImage(named: "img/11.jpg")
+        bgImage.image = UIImage(named: monthImage())
         bgImage.makeBloorImage(targetImageView: bgImage)
         tableView.layer.backgroundColor = UIColor.clear.cgColor
         tableView.backgroundColor = UIColor.clear
@@ -59,6 +59,22 @@ class MainView: UIViewController, CLLocationManagerDelegate, UITableViewDelegate
         tableView.register(WeatherDetailCell.self, forCellReuseIdentifier: descriptCellID)
     }
 
+    func monthImage() -> String {
+        let day = Date()
+        let calendar = Calendar.current
+        let requestedComponents: Set<Calendar.Component> = [
+            .year,
+            .month,
+            .day,
+            .hour,
+            .minute,
+            .second
+        ]
+        let td = calendar.dateComponents(requestedComponents, from: day)
+        return ("img/\(td.month!).jpg")
+    }
+    
+    
     func clearTempText() {
         self.cityName.text = ""
         self.currentTemp.text = ""
