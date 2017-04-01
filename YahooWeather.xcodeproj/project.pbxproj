@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		C30A9B541DC903A40058E180 /* WeatherDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30A9B531DC903A40058E180 /* WeatherDetailCell.swift */; };
-		C368820C1DBE92580005A65E /* img in Resources */ = {isa = PBXBuildFile; fileRef = C368820B1DBE92580005A65E /* img */; };
 		C39D58511DBE691E007FEAB9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39D58501DBE691E007FEAB9 /* AppDelegate.swift */; };
 		C39D58561DBE691E007FEAB9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C39D58541DBE691E007FEAB9 /* Main.storyboard */; };
 		C39D58581DBE691E007FEAB9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C39D58571DBE691E007FEAB9 /* Assets.xcassets */; };
@@ -41,7 +40,6 @@
 
 /* Begin PBXFileReference section */
 		C30A9B531DC903A40058E180 /* WeatherDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherDetailCell.swift; sourceTree = "<group>"; };
-		C368820B1DBE92580005A65E /* img */ = {isa = PBXFileReference; lastKnownFileType = folder; path = img; sourceTree = "<group>"; };
 		C39D584D1DBE691E007FEAB9 /* YahooWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YahooWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C39D58501DBE691E007FEAB9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C39D58551DBE691E007FEAB9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -109,7 +107,6 @@
 		C39D584F1DBE691E007FEAB9 /* YahooWeather */ = {
 			isa = PBXGroup;
 			children = (
-				C368820B1DBE92580005A65E /* img */,
 				C39D58501DBE691E007FEAB9 /* AppDelegate.swift */,
 				C39D587E1DBE6F65007FEAB9 /* MainView.swift */,
 				C3A4E1491DC1250300B85E5D /* WiirlockExtensions.swift */,
@@ -250,7 +247,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C368820C1DBE92580005A65E /* img in Resources */,
 				C39D585B1DBE691E007FEAB9 /* LaunchScreen.storyboard in Resources */,
 				C39D58581DBE691E007FEAB9 /* Assets.xcassets in Resources */,
 				C39D58561DBE691E007FEAB9 /* Main.storyboard in Resources */,

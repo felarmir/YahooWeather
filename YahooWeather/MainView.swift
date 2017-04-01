@@ -71,7 +71,7 @@ class MainView: UIViewController, CLLocationManagerDelegate, UITableViewDelegate
             .second
         ]
         let td = calendar.dateComponents(requestedComponents, from: day)
-        return ("img/\(td.month!).jpg")
+        return ("m\(td.month!)")
     }
     
     
@@ -94,7 +94,7 @@ class MainView: UIViewController, CLLocationManagerDelegate, UITableViewDelegate
         let tText = cond!["temp"] as! String
         currentTemp.text = "\(converter(temp: Int(tText)!))"
         weatherText.text = cond!["text"] as? String
-        curWeatherPic.image = UIImage(named: "img/icons/\(cond!["code"] as! String).png")
+        curWeatherPic.image = UIImage(named: "\(cond!["code"] as! String)")
         
         if forecast != nil {
             tableView.reloadData()
@@ -159,7 +159,7 @@ class MainView: UIViewController, CLLocationManagerDelegate, UITableViewDelegate
             cell.weakDay.text = forcastItem["day"] as? String
             cell.high.text = "\(converter(temp: Int((forcastItem["high"] as? String)!)!))"
             cell.low.text = "\(converter(temp: Int((forcastItem["low"] as? String)!)!))"
-            cell.weatherImage.image = UIImage(named: "img/icons/\(forcastItem["code"] as! String).png")
+            cell.weatherImage.image = UIImage(named: "\(forcastItem["code"] as! String)")
             fcell = cell;
         }
         if indexPath.section == 1 {
